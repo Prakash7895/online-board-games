@@ -1,18 +1,13 @@
-import { Box, Text, useTheme } from '@gluestack-ui/themed';
+import Box from '@/components/Theme/Box';
+import Text from '@/components/Theme/Text';
+import { useTheme } from '@gluestack-ui/themed';
 
 export default function Home() {
   const theme = useTheme();
 
   console.log(theme);
   return (
-    <Box
-      borderWidth={2}
-      $light-bgColor='$rose600'
-      $dark-bgColor='$indigo400'
-      flex={1}
-      justifyContent='center'
-      alignItems='center'
-    >
+    <Box flex={1} justifyContent='center' alignItems='center'>
       <Text>HOME</Text>
     </Box>
   );
