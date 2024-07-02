@@ -6,8 +6,8 @@ import {
 } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import { useEffect, useLayoutEffect, useState } from 'react';
-import { GluestackUIProvider, Text, Box } from '@gluestack-ui/themed';
+import { useEffect, useState } from 'react';
+import { GluestackUIProvider, Button, ButtonText } from '@gluestack-ui/themed';
 import { config } from '@gluestack-ui/config';
 import { useColorScheme } from '@/components/useColorScheme';
 import { Slot } from 'expo-router';
@@ -37,12 +37,18 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
   const colorScheme = useColorScheme();
 
   return (
-    <GluestackUIProvider config={config} colorMode={colorScheme ?? 'light'}>
+    <GluestackUIProvider config={config} colorMode={theme ?? 'light'}>
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
         <Slot />
+        <Button
+          onPress={() => setTheme((p) => (p === 'dark' ? 'light' : 'dark'))}
+        >
+          <ButtonText>Change Theme</ButtonText>
+        </Button>
       </ThemeProvider>
     </GluestackUIProvider>
   );

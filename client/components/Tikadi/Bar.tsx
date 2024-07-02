@@ -7,6 +7,7 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
+import { Colors } from '@/constants/Color';
 
 const horizontalBar = ['H1', 'H2', 'H3'] as const;
 const verticalBar = ['V1', 'V2', 'V3'] as const;
@@ -49,7 +50,12 @@ const Bar: FC<IBar> = ({ type, showAnimation = false }) => {
   }, [showAnimation]);
 
   return (
-    <Box {...dimensions} borderColor={'#f1f'} borderWidth={1}>
+    <Box
+      {...dimensions}
+      $dark-borderColor={Colors.dark.tikadiBorderColor}
+      $light-borderColor={Colors.light.tikadiBorderColor}
+      borderWidth={1}
+    >
       <Animated.View
         style={{
           backgroundColor: 'orange',
