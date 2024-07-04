@@ -2,6 +2,7 @@ import React, { FC, ReactNode } from 'react';
 import Box from '../Theme/Box';
 import { StyleSheet } from 'react-native';
 import { Colors } from '@/constants/Color';
+import RippleEffect from '../RippleEffect';
 
 interface ICircle {
   children: ReactNode;
@@ -9,20 +10,22 @@ interface ICircle {
 
 const Circle: FC<ICircle> = ({ children }) => {
   return (
-    <Box
-      width='$12'
-      height='$12'
-      borderRadius='$full'
-      justifyContent='center'
-      alignItems='center'
-      $light-bgColor={Colors.light.tikadiCircleBg}
-      $dark-bgColor={Colors.dark.tikadiCircleBg}
-      style={styles.shadow}
-      $light-shadowColor={Colors.light.tikadiShadowColor}
-      $dark-shadowColor={Colors.dark.tikadiShadowColor}
-    >
-      {children}
-    </Box>
+    <RippleEffect radius={50}>
+      <Box
+        width='$full'
+        height='$full'
+        borderRadius='$full'
+        justifyContent='center'
+        alignItems='center'
+        $light-bgColor={Colors.light.tikadiCircleBg}
+        $dark-bgColor={Colors.dark.tikadiCircleBg}
+        style={styles.shadow}
+        $light-shadowColor={Colors.light.tikadiShadowColor}
+        $dark-shadowColor={Colors.dark.tikadiShadowColor}
+      >
+        {children}
+      </Box>
+    </RippleEffect>
   );
 };
 
