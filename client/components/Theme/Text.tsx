@@ -1,4 +1,4 @@
-import { Colors } from '@/constants/Color';
+import { Colors } from '@/utils/Color';
 import { StyledComponentProps } from '@gluestack-style/react/lib/typescript/types';
 import { Text as GText } from '@gluestack-ui/themed';
 import { ForwardRefExoticComponent, forwardRef } from 'react';

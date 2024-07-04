@@ -2,6 +2,7 @@ import { Button, ButtonText } from '@gluestack-ui/themed';
 import React, { FC, ReactNode, useEffect } from 'react';
 import Animated, {
   Easing,
+  cancelAnimation,
   useAnimatedStyle,
   useSharedValue,
   withDelay,
@@ -68,6 +69,13 @@ const RippleEffect: FC<IRippleEffect> = ({ radius, children }) => {
         -1
       )
     );
+
+    return () => {
+      cancelAnimation(scale1);
+      cancelAnimation(opacity1);
+      cancelAnimation(scale2);
+      cancelAnimation(opacity2);
+    };
   }, [radius]);
 
   const animatedStyle1 = useAnimatedStyle(() => {

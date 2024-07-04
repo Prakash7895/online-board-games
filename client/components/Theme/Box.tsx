@@ -1,5 +1,5 @@
 import { Box as GBox } from '@gluestack-ui/themed';
-import { Colors } from '@/constants/Color';
+import { Colors } from '@/utils/Color';
 import { forwardRef } from 'react';
 import { StyledComponentProps } from '@gluestack-style/react/lib/typescript/types';
 import { StyleProp, View, ViewProps, ViewStyle } from 'react-native';

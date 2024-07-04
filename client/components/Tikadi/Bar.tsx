@@ -7,7 +7,7 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import { Colors } from '@/constants/Color';
+import { Colors } from '@/utils/Color';
 
 const horizontalBar = ['H1', 'H2', 'H3'] as const;
 const verticalBar = ['V1', 'V2', 'V3'] as const;

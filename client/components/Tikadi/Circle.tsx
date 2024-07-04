@@ -1,16 +1,17 @@
 import React, { FC, ReactNode } from 'react';
 import Box from '../Theme/Box';
 import { StyleSheet } from 'react-native';
-import { Colors } from '@/constants/Color';
+import { Colors } from '@/utils/Color';
 import RippleEffect from '../RippleEffect';
+import { TIKADI_CIRCLE_SIZE } from '@/utils';
 
 interface ICircle {
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const Circle: FC<ICircle> = ({ children }) => {
   return (
-    <RippleEffect radius={50}>
+    <RippleEffect radius={TIKADI_CIRCLE_SIZE}>
       <Box
         width='$full'
         height='$full'
