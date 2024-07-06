@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from 'react';
 import Box from '../Theme/Box';
-import { StyleSheet } from 'react-native';
+import { StyleProp, StyleSheet, ViewStyle } from 'react-native';
 import { Colors } from '@/utils/Color';
 import RippleEffect from '../RippleEffect';
 import { TIKADI_CIRCLE_SIZE } from '@/utils';
@@ -8,9 +8,10 @@ import { TIKADI_CIRCLE_SIZE } from '@/utils';
 interface ICircle {
   children?: ReactNode;
   showRippleEffect: boolean;
+  style?: StyleProp<ViewStyle>;
 }
 
-const Circle: FC<ICircle> = ({ children, showRippleEffect }) => {
+const Circle: FC<ICircle> = ({ children, showRippleEffect, style }) => {
   if (showRippleEffect) {
     return (
       <RippleEffect radius={TIKADI_CIRCLE_SIZE}>
@@ -22,7 +23,7 @@ const Circle: FC<ICircle> = ({ children, showRippleEffect }) => {
           alignItems='center'
           $light-bgColor={Colors.light.tikadiCircleBg}
           $dark-bgColor={Colors.dark.tikadiCircleBg}
-          style={styles.shadow}
+          style={[styles.shadow, style]}
           $light-shadowColor={Colors.light.tikadiShadowColor}
           $dark-shadowColor={Colors.dark.tikadiShadowColor}
         >
@@ -41,7 +42,7 @@ const Circle: FC<ICircle> = ({ children, showRippleEffect }) => {
       alignItems='center'
       $light-bgColor={Colors.light.tikadiCircleBg}
       $dark-bgColor={Colors.dark.tikadiCircleBg}
-      style={styles.shadow}
+      style={[styles.shadow, style]}
       $light-shadowColor={Colors.light.tikadiShadowColor}
       $dark-shadowColor={Colors.dark.tikadiShadowColor}
     >

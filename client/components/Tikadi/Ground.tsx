@@ -19,7 +19,9 @@ const Ground = () => {
     return pucks.map((i) => (
       <Box
         key={`player-${player}-${i}`}
-        {...(turn === player && i === selectedMarble
+        {...(turn === player &&
+        i === selectedMarble &&
+        [...player1, ...player2].includes(-1)
           ? {
               style: {
                 transform: 'scale(1.25)',
