@@ -3,7 +3,8 @@ import Box from '../Theme/Box';
 import Bar from './Bar';
 import { Dimensions } from 'react-native';
 import Text from '../Theme/Text';
-import Circle from './Circle';
+import { Position } from '@/utils/type';
+import TikadiCircle from './TikadiCircle';
 
 const screenDimensions = Dimensions.get('screen');
 
@@ -101,11 +102,9 @@ const Mesh = () => {
             >
               {Array.from({ length: 3 }, () => 0).map((_, j) => {
                 return (
-                  <Circle key={i + j}>
-                    <Text>
-                      {i}, {j}
-                    </Text>
-                  </Circle>
+                  <TikadiCircle key={i + j} num={(i * 3 + (j + 1)) as Position}>
+                    <Text>{i * 3 + (j + 1)}</Text>
+                  </TikadiCircle>
                 );
               })}
             </Box>

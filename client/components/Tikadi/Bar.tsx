@@ -33,7 +33,6 @@ const Bar: FC<IBar> = ({ type, showAnimation = false }) => {
       : styles.d2;
 
   const length = useSharedValue(0);
-  console.log('length', length);
 
   useEffect(() => {
     if (showAnimation) {

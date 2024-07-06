@@ -7,26 +7,46 @@ import { TIKADI_CIRCLE_SIZE } from '@/utils';
 
 interface ICircle {
   children?: ReactNode;
+  showRippleEffect: boolean;
 }
 
-const Circle: FC<ICircle> = ({ children }) => {
+const Circle: FC<ICircle> = ({ children, showRippleEffect }) => {
+  if (showRippleEffect) {
+    return (
+      <RippleEffect radius={TIKADI_CIRCLE_SIZE}>
+        <Box
+          width='$full'
+          height='$full'
+          borderRadius='$full'
+          justifyContent='center'
+          alignItems='center'
+          $light-bgColor={Colors.light.tikadiCircleBg}
+          $dark-bgColor={Colors.dark.tikadiCircleBg}
+          style={styles.shadow}
+          $light-shadowColor={Colors.light.tikadiShadowColor}
+          $dark-shadowColor={Colors.dark.tikadiShadowColor}
+        >
+          {children}
+        </Box>
+      </RippleEffect>
+    );
+  }
+
   return (
-    <RippleEffect radius={TIKADI_CIRCLE_SIZE}>
-      <Box
-        width='$full'
-        height='$full'
-        borderRadius='$full'
-        justifyContent='center'
-        alignItems='center'
-        $light-bgColor={Colors.light.tikadiCircleBg}
-        $dark-bgColor={Colors.dark.tikadiCircleBg}
-        style={styles.shadow}
-        $light-shadowColor={Colors.light.tikadiShadowColor}
-        $dark-shadowColor={Colors.dark.tikadiShadowColor}
-      >
-        {children}
-      </Box>
-    </RippleEffect>
+    <Box
+      width={TIKADI_CIRCLE_SIZE}
+      height={TIKADI_CIRCLE_SIZE}
+      borderRadius='$full'
+      justifyContent='center'
+      alignItems='center'
+      $light-bgColor={Colors.light.tikadiCircleBg}
+      $dark-bgColor={Colors.dark.tikadiCircleBg}
+      style={styles.shadow}
+      $light-shadowColor={Colors.light.tikadiShadowColor}
+      $dark-shadowColor={Colors.dark.tikadiShadowColor}
+    >
+      {children}
+    </Box>
   );
 };
 

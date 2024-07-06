@@ -11,8 +11,9 @@ import { GluestackUIProvider, Button, ButtonText } from '@gluestack-ui/themed';
 import { config } from '@gluestack-ui/config';
 import { useColorScheme } from '@/components/useColorScheme';
 import { Slot } from 'expo-router';
-
 export { ErrorBoundary } from 'expo-router';
+import { Provider } from 'react-redux';
+import { store } from '@/store';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -41,15 +42,19 @@ function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
-    <GluestackUIProvider config={config} colorMode={theme ?? 'light'}>
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Slot />
-        <Button
-          onPress={() => setTheme((p) => (p === 'dark' ? 'light' : 'dark'))}
+    <Provider store={store}>
+      <GluestackUIProvider config={config} colorMode={theme ?? 'light'}>
+        <ThemeProvider
+          value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
         >
-          <ButtonText>Change Theme</ButtonText>
-        </Button>
-      </ThemeProvider>
-    </GluestackUIProvider>
+          <Slot />
+          <Button
+            onPress={() => setTheme((p) => (p === 'dark' ? 'light' : 'dark'))}
+          >
+            <ButtonText>Change Theme</ButtonText>
+          </Button>
+        </ThemeProvider>
+      </GluestackUIProvider>
+    </Provider>
   );
 }
