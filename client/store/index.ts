@@ -4,7 +4,7 @@ import tikadi from './tikadi';
 
 let middlewares: any[] = [];
 
-if (__DEV__) {
+if (!__DEV__) {
   middlewares = [logger];
 }
 

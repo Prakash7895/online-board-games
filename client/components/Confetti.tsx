@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef } from 'react';
+import React, { FC, ReactNode, useEffect, useRef } from 'react';
 import Box from './Theme/Box';
 import LottieView from 'lottie-react-native';
 import { StyleSheet } from 'react-native';
@@ -6,9 +6,10 @@ import { StyleSheet } from 'react-native';
 interface IConfetti {
   show: boolean;
   onFinish: () => void;
+  children: ReactNode;
 }
 
-const Confetti: FC<IConfetti> = ({ show, onFinish }) => {
+const Confetti: FC<IConfetti> = ({ show, onFinish, children }) => {
   const confettiRef = useRef<LottieView>(null);
 
   function triggerConfetti() {
@@ -27,11 +28,9 @@ const Confetti: FC<IConfetti> = ({ show, onFinish }) => {
       justifyContent='center'
       alignItems='center'
       position='absolute'
-      borderWidth={2}
-      borderColor='yellow'
       width='$full'
       height='$full'
-      zIndex={1000}
+      zIndex={10}
       style={{
         backgroundColor: 'transparent',
       }}
@@ -42,10 +41,24 @@ const Confetti: FC<IConfetti> = ({ show, onFinish }) => {
         autoPlay={false}
         loop={false}
         style={styles.lottie}
-        resizeMode='center'
+        resizeMode='cover'
         onAnimationFinish={onFinish}
         duration={3500}
       />
+
+      <Box
+        width='$full'
+        height='$full'
+        alignItems='center'
+        justifyContent='center'
+        style={{
+          zIndex: 100,
+          position: 'absolute',
+          backgroundColor: 'transparent',
+        }}
+      >
+        {children}
+      </Box>
     </Box>
   );
 };
@@ -54,12 +67,9 @@ export default Confetti;
 
 const styles = StyleSheet.create({
   lottie: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    zIndex: 1000,
+    width: '100%',
+    height: '100%',
+    zIndex: 10,
     pointerEvents: 'none',
   },
 });

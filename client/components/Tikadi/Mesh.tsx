@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Box from '../Theme/Box';
 import Bar from './Bar';
 import { Dimensions } from 'react-native';
 import Text from '../Theme/Text';
-import { Position } from '@/utils/type';
+import { BarTypes, Position } from '@/utils/type';
 import TikadiCircle from './TikadiCircle';
 
 const screenDimensions = Dimensions.get('screen');
 
-const Mesh = () => {
+interface IMesh {
+  winnerBar?: BarTypes | null;
+}
+
+const Mesh: FC<IMesh> = ({ winnerBar }) => {
   const { width } = screenDimensions;
 
   const margin = 20;
@@ -39,9 +43,9 @@ const Mesh = () => {
             flexDirection='row'
             justifyContent='space-between'
           >
-            <Bar type='V1' showAnimation={false} />
-            <Bar type='V2' showAnimation={false} />
-            <Bar type='V3' showAnimation={false} />
+            <Bar type='V1' showAnimation={winnerBar === 'V1'} />
+            <Bar type='V2' showAnimation={winnerBar === 'V2'} />
+            <Bar type='V3' showAnimation={winnerBar === 'V3'} />
           </Box>
           <Box
             flex={1}
@@ -50,9 +54,9 @@ const Mesh = () => {
               backgroundColor: 'transparent',
             }}
           >
-            <Bar type='H1' showAnimation={false} />
-            <Bar type='H2' showAnimation={false} />
-            <Bar type='H3' showAnimation={false} />
+            <Bar type='H1' showAnimation={winnerBar === 'H1'} />
+            <Bar type='H2' showAnimation={winnerBar === 'H2'} />
+            <Bar type='H3' showAnimation={winnerBar === 'H3'} />
           </Box>
           <Box
             position='absolute'
@@ -65,7 +69,7 @@ const Mesh = () => {
             alignItems='center'
             overflow='hidden'
           >
-            <Bar type='D1' showAnimation={false} />
+            <Bar type='D1' showAnimation={winnerBar === 'D1'} />
           </Box>
           <Box
             position='absolute'
@@ -78,7 +82,7 @@ const Mesh = () => {
             alignItems='center'
             overflow='hidden'
           >
-            <Bar type='D2' showAnimation={false} />
+            <Bar type='D2' showAnimation={winnerBar === 'D2'} />
           </Box>
         </Box>
       </Box>

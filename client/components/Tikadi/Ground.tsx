@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Mesh from './Mesh';
 import Box from '../Theme/Box';
-import { TIKADI_CIRCLE_SIZE } from '@/utils';
+import { barNumByPos, checkIfWon, TIKADI_CIRCLE_SIZE } from '@/utils';
 import Puck from './Puck';
 import { RootState } from '@/store';
 import { useSelector } from 'react-redux';
@@ -9,11 +9,18 @@ import { PlayerTurn } from '@/utils/type';
 import { Colors } from '@/utils/Color';
 
 const Ground = () => {
-  const { turn, selectedMarble, player1, player2 } = useSelector(
+  const { turn, selectedMarble, player1, player2, winner } = useSelector(
     (state: RootState) => state.tikadi
   );
 
   const pucks = Array.from({ length: 3 }, (_, idx) => idx + 1);
+
+  const winnerBarNum =
+    winner > 0
+      ? checkIfWon([
+          ...(winner === PlayerTurn.currentPlayer ? player1 : player2),
+        ])
+      : -1;
 
   const renderPucks = (player: PlayerTurn) => {
     return pucks.map((i) => (
@@ -78,7 +85,7 @@ const Ground = () => {
       >
         {renderPucks(PlayerTurn.otherPlayer)}
       </Box>
-      <Mesh />
+      <Mesh winnerBar={winnerBarNum < 0 ? null : barNumByPos[winnerBarNum]} />
       <Box
         py={3}
         px={6}

@@ -1,9 +1,8 @@
 import React from 'react';
-import Box from '../Theme/Box';
 import Ground from './Ground';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
-import Confetti from '../Confetti';
+import TikadiSuccessModal from './TikadiSuccessModal';
 
 const Tikadi = () => {
   const tikadi = useSelector((state: RootState) => state.tikadi);
@@ -13,9 +12,7 @@ const Tikadi = () => {
   return (
     <>
       <Ground />
-      {tikadi.winner > 0 && (
-        <Confetti show={tikadi.winner > 0} onFinish={() => {}} />
-      )}
+      {tikadi.winner > 0 && <TikadiSuccessModal />}
     </>
   );
 };

@@ -1,4 +1,4 @@
-import { MarblePositions, Position } from './type';
+import { BarTypes, MarblePositions, Position } from './type';
 
 export const TIKADI_CIRCLE_SIZE = 45;
 
@@ -51,6 +51,16 @@ const winningPositions = [
 
   [1, 5, 9],
   [3, 5, 7],
+];
+
+export const horizontalBar = ['H1', 'H2', 'H3'] as const;
+export const verticalBar = ['V1', 'V2', 'V3'] as const;
+
+export const barNumByPos: BarTypes[] = [
+  ...horizontalBar,
+  ...verticalBar,
+  'D1',
+  'D2',
 ];
 
 export const checkIfWon = (arr: MarblePositions) => {

@@ -4,19 +4,14 @@ import { DimensionValue, Dimensions, StyleSheet } from 'react-native';
 import Animated, {
   Easing,
   useSharedValue,
-  withSpring,
   withTiming,
 } from 'react-native-reanimated';
 import { Colors } from '@/utils/Color';
-
-const horizontalBar = ['H1', 'H2', 'H3'] as const;
-const verticalBar = ['V1', 'V2', 'V3'] as const;
-
-type HorizontalBarType = (typeof horizontalBar)[number];
-type VerticalBarType = (typeof verticalBar)[number];
+import { horizontalBar, verticalBar } from '@/utils';
+import { BarTypes, HorizontalBarType, VerticalBarType } from '@/utils/type';
 
 interface IBar {
-  type: HorizontalBarType | VerticalBarType | 'D1' | 'D2';
+  type: BarTypes;
   showAnimation?: boolean;
 }
 
