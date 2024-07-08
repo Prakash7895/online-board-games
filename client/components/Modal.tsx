@@ -12,37 +12,44 @@ import {
   Button,
   Icon,
 } from '@gluestack-ui/themed';
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 import Text from './Theme/Text';
+import { Keyboard } from 'react-native';
 
 interface IModal {
-  onClose?: () => void;
+  body?: ReactNode;
   heading: string;
-  body?: string;
-  onCancel: () => void;
-  secondaryBtn?: string;
-  secondaryBtnHandler?: () => void;
   primaryBtn: string;
+  onCancel: () => void;
+  onClose?: () => void;
+  secondaryBtn?: string | null;
   primaryBtnHandler?: () => void;
+  secondaryBtnHandler?: () => void;
 }
 
 const Modal: FC<IModal> = ({
+  body,
   onClose,
   heading,
   onCancel,
-  body,
   primaryBtn,
   primaryBtnHandler,
-  secondaryBtn = 'Cancel',
   secondaryBtnHandler,
+  secondaryBtn = 'Cancel',
 }) => {
   const ref = React.useRef(null);
 
   const handleCancel = () => onCancel();
 
   return (
-    <GModal isOpen={true} onClose={onClose && onClose()} finalFocusRef={ref}>
-      <ModalBackdrop />
+    <GModal
+      isOpen={true}
+      onClose={onClose && onClose()}
+      finalFocusRef={ref}
+      onStartShouldSetResponder={() => true}
+      onResponderRelease={Keyboard.dismiss}
+    >
+      <ModalBackdrop onPress={Keyboard.dismiss} />
       <ModalContent>
         <ModalHeader>
           <Heading size='lg'>{heading}</Heading>
@@ -51,7 +58,7 @@ const Modal: FC<IModal> = ({
           </ModalCloseButton>
         </ModalHeader>
         <ModalBody>
-          <Text>{body}</Text>
+          {typeof body === 'string' ? <Text>{body}</Text> : body}
         </ModalBody>
         <ModalFooter>
           {secondaryBtn && (

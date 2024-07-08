@@ -13,7 +13,9 @@ import { useColorScheme } from '@/components/useColorScheme';
 import { Slot } from 'expo-router';
 export { ErrorBoundary } from 'expo-router';
 import { Provider } from 'react-redux';
-import { store } from '@/store';
+import { persistor, store } from '@/store';
+import { PersistGate } from 'redux-persist/integration/react';
+import { Text } from 'react-native';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -43,18 +45,27 @@ function RootLayoutNav() {
 
   return (
     <Provider store={store}>
-      <GluestackUIProvider config={config} colorMode={theme ?? 'light'}>
-        <ThemeProvider
-          value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
-        >
-          <Slot />
-          <Button
-            onPress={() => setTheme((p) => (p === 'dark' ? 'light' : 'dark'))}
+      <PersistGate
+        persistor={persistor}
+        loading={
+          <>
+            <Text>Loading....</Text>
+          </>
+        }
+      >
+        <GluestackUIProvider config={config} colorMode={theme ?? 'light'}>
+          <ThemeProvider
+            value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
           >
-            <ButtonText>Change Theme</ButtonText>
-          </Button>
-        </ThemeProvider>
-      </GluestackUIProvider>
+            <Slot />
+            <Button
+              onPress={() => setTheme((p) => (p === 'dark' ? 'light' : 'dark'))}
+            >
+              <ButtonText>Change Theme</ButtonText>
+            </Button>
+          </ThemeProvider>
+        </GluestackUIProvider>
+      </PersistGate>
     </Provider>
   );
 }

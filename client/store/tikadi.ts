@@ -8,7 +8,7 @@ import {
 } from '@/utils/type';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-export interface TikadiState {
+export interface ITikadiState {
   turn: PlayerTurn | -1;
   winner: PlayerTurn | -1;
   player1: MarblePositions;
@@ -18,7 +18,7 @@ export interface TikadiState {
   nextPossiblePositions: Position[];
 }
 
-const initialState: TikadiState = {
+const initialState: ITikadiState = {
   turn: 1,
   winner: -1,
   player1: [-1, -1, -1],

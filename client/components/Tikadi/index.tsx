@@ -1,11 +1,10 @@
 import React from 'react';
 import Ground from './Ground';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/store';
 import TikadiSuccessModal from './TikadiSuccessModal';
+import { useAppSelector } from '@/hooks/useAppSelector';
 
 const Tikadi = () => {
-  const tikadi = useSelector((state: RootState) => state.tikadi);
+  const tikadi = useAppSelector((state) => state.tikadi);
 
   console.log(JSON.stringify(tikadi, null, 2));
 

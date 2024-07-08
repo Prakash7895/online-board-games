@@ -49,6 +49,7 @@ const Bar: FC<IBar> = ({ type, showAnimation = false }) => {
       $dark-borderColor={Colors.dark.tikadiBorderColor}
       $light-borderColor={Colors.light.tikadiBorderColor}
       borderWidth={1}
+      overflow='hidden'
     >
       <Animated.View
         style={{

@@ -1,16 +1,15 @@
-import * as React from 'react';
+import Puck from './Puck';
 import Mesh from './Mesh';
 import Box from '../Theme/Box';
-import { barNumByPos, checkIfWon, TIKADI_CIRCLE_SIZE } from '@/utils';
-import Puck from './Puck';
-import { RootState } from '@/store';
-import { useSelector } from 'react-redux';
-import { PlayerTurn } from '@/utils/type';
+import * as React from 'react';
 import { Colors } from '@/utils/Color';
+import { PlayerTurn } from '@/utils/type';
+import { useAppSelector } from '@/hooks/useAppSelector';
+import { barNumByPos, checkIfWon, TIKADI_CIRCLE_SIZE } from '@/utils';
 
 const Ground = () => {
-  const { turn, selectedMarble, player1, player2, winner } = useSelector(
-    (state: RootState) => state.tikadi
+  const { turn, selectedMarble, player1, player2, winner } = useAppSelector(
+    (state) => state.tikadi
   );
 
   const pucks = Array.from({ length: 3 }, (_, idx) => idx + 1);

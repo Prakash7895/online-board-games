@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Confetti from '../Confetti';
 import Modal from '../Modal';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@/store';
+import { useDispatch } from 'react-redux';
 import { PlayerTurn } from '@/utils/type';
 import { resetTikadiState } from '@/store/tikadi';
+import { useAppSelector } from '@/hooks/useAppSelector';
 
 const TikadiSuccessModal = () => {
   const [showModal, setShowModal] = useState(false);
-  const { winner } = useSelector((state: RootState) => state.tikadi);
+  const { winner } = useAppSelector((state) => state.tikadi);
   const dispatch = useDispatch();
 
   const winnerText = `${

@@ -1,12 +1,12 @@
-import { RootState } from '@/store';
 import { PlayerTurn, Position, SelectedMarbles } from '@/utils/type';
 import React, { FC, ReactNode } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Circle from './Circle';
 import { Pressable } from '@gluestack-ui/themed';
 import { moveToSelectedPosition, selectMarble } from '@/store/tikadi';
 import Puck from './Puck';
 import { getNextPossibleTikadiPositions, TIKADI_CIRCLE_SIZE } from '@/utils';
+import { useAppSelector } from '@/hooks/useAppSelector';
 
 interface ITikadiCircle {
   num: Position;
@@ -21,7 +21,7 @@ const TikadiCircle: FC<ITikadiCircle> = ({ num, children }) => {
     player2,
     selectedMarble,
     nextPossiblePositions,
-  } = useSelector((state: RootState) => state.tikadi);
+  } = useAppSelector((state) => state.tikadi);
   const dispatch = useDispatch();
 
   const handlePress = () => {

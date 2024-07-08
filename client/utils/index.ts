@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { BarTypes, MarblePositions, Position } from './type';
 
 export const TIKADI_CIRCLE_SIZE = 45;
@@ -74,4 +75,21 @@ export const checkIfWon = (arr: MarblePositions) => {
   });
 
   return idx;
+};
+
+export const storeData = async (key: string, value: any) => {
+  try {
+    await AsyncStorage.setItem(key, JSON.stringify(value));
+  } catch (err) {
+    console.log('Error storing data', err);
+  }
+};
+
+export const getData = async (key: string) => {
+  try {
+    const jsonValue = await AsyncStorage.getItem(key);
+    return jsonValue != null ? JSON.parse(jsonValue) : null;
+  } catch (e) {
+    console.log('Error storing data', e);
+  }
 };
