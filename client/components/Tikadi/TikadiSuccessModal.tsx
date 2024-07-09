@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { PlayerTurn } from '@/utils/type';
 import { resetTikadiState } from '@/store/tikadi';
 import { useAppSelector } from '@/hooks/useAppSelector';
+import { router } from 'expo-router';
 
 const TikadiSuccessModal = () => {
   const [showModal, setShowModal] = useState(false);
@@ -40,6 +41,9 @@ const TikadiSuccessModal = () => {
             setShowModal(false);
           }}
           secondaryBtn='Go Home'
+          secondaryBtnHandler={() => {
+            router.back();
+          }}
           primaryBtn='Yes'
           primaryBtnHandler={() => {
             setShowModal(false);

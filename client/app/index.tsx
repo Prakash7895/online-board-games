@@ -1,6 +1,7 @@
 import Box from '@/components/Theme/Box';
-import { Button, ButtonText, Heading, useTheme } from '@gluestack-ui/themed';
+import { Heading, useTheme } from '@gluestack-ui/themed';
 import NameConfirmation from '@/components/NameConfirmation';
+import Link from '@/components/Theme/Link';
 
 export default function Home() {
   const theme = useTheme();
@@ -22,9 +23,7 @@ export default function Home() {
         alignItems='center'
         justifyContent='center'
       >
-        <Button>
-          <ButtonText>Play</ButtonText>
-        </Button>
+        <Link href='/tikadi'>Play</Link>
       </Box>
     </Box>
   );
